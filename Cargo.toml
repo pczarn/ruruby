@@ -1,0 +1,9 @@
+[package]
+
+name = "ruruby"
+version = "0.0.1"
+authors = [ "pioczarn@gmail.com" ]
+
+[[lib]]
+name = "ruruby"
+crate_type = ["rlib"]
