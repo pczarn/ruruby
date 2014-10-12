@@ -22,7 +22,7 @@ extern {
     pub fn rb_assoc_new(a: Value, b: Value) -> Value;
     pub fn rb_check_array_type(ary: Value) -> Value;
     pub fn rb_ary_new() -> Value;
-    pub fn rb_ary_new_capa(capa: uintptr_t) -> Value;
+    pub fn rb_ary_new_capa(capa: c_long) -> Value;
     pub fn rb_ary_new_from_args(n: uintptr_t, ...) -> Value;
     pub fn rb_ary_new_from_Values(n: uintptr_t, elts: *const Value) -> Value;
     pub fn rb_ary_tmp_new(size: uintptr_t) -> Value;
@@ -62,7 +62,7 @@ extern {
     pub fn rb_get_values_at(ary: Value, x: uintptr_t, y: intptr_t, p: *mut Value, f: fn(Value, uintptr_t) -> Value) -> Value;
     pub fn rb_ary_resize(ary: Value, len: c_long) -> Value;
 
-    pub fn rb_define_method(a: Value, name: *const i8, f: fn(intptr_t) -> Value, x: intptr_t) -> Value;
+    pub fn rb_define_method(a: Value, name: *const i8, f: *const (), x: intptr_t) -> Value;
     pub fn rb_const_get(a: Value, id: uintptr_t) -> Value;
     pub fn rb_intern(s: *const i8) -> uintptr_t;
 

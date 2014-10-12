@@ -1,5 +1,6 @@
 use raw;
 use value::Value;
+use libc::c_long;
 
 pub struct Array {
     ary: Value
@@ -14,7 +15,7 @@ impl Array {
 
     pub fn with_capacity(capacity: uint) -> Array {
         Array {
-            ary: unsafe { raw::rb_ary_new_capa(capacity) }
+            ary: unsafe { raw::rb_ary_new_capa(capacity as c_long) }
         }
     }
 

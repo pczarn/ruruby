@@ -1,3 +1,4 @@
+#[repr(C)]
 pub struct Value(uint);
 
 pub type SignedValue = int;

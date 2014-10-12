@@ -6,4 +6,4 @@ authors = [ "pioczarn@gmail.com" ]
 
 [[lib]]
 name = "ruruby"
-crate_type = ["rlib"]
+crate_type = ["dylib"]
