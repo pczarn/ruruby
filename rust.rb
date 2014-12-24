@@ -35,16 +35,12 @@ module Inline
       (-> \s* (?<rty> i64|int|c_int|bool) )?
    }x
    ARG = %r{
-      (?<name> \w+) \s* : \s* (?<ty> i64|int|c_int|bool)
+      (?<name> \w+) \s* : \s* (?<ty> i64|uint|int|c_int|bool)
    }x
 
     def parse_signature(src, raw=false)
 
       sig = self.strip_comments(src)
-      # strip preprocessor directives
-      #sig.gsub!(/^\s*\#.*(\\\n.*)*/, '')
-      # strip {}s
-      #sig.gsub!(/\{[^\}]*\}/, '{ }')
       # clean and collapse whitespace
       sig.gsub!(/\s+/, ' ')
 
@@ -52,22 +48,12 @@ module Inline
         @types = 'void|' + @type_map.keys.map{|x| Regexp.escape(x)}.join('|')
       end
 
-   p sig, @types, ARG
-
-      # if /(#{@types})\s*(\w+)\s*\(([^)]*)\)/ =~ sig then
       if SIG =~ sig then
-         p $~
         function_name, arg_string, return_type = $~[:name], $~[:args], $~[:rty]
         args = []
         arg_string.split(',').each do |arg|
-
-          # helps normalize into 'char * varname' form
-          #arg = arg.gsub(/\s*\*\s*/, ' * ').strip
-         p arg
-          #if /(((#{@types})\s*\*?)+)\s+(\w+)\s*$/ =~ arg then
           if ARG =~ arg then
             args.push([$~[:name], $~[:ty]])
-            p args
           elsif arg != "void" then
             warn "WAR\NING: '#{arg}' not understood"
           end

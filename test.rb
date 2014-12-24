@@ -12,4 +12,5 @@ class MyTest
   end
 end
 t = MyTest.new()
-factorial_5 = t.factorial()
+factorial_5 = t.factorial(5)
+puts factorial_5

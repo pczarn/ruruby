@@ -1,4 +1,5 @@
 #[repr(C)]
+#[deriving(Copy)]
 pub struct Value(uint);
 
 pub type SignedValue = int;
